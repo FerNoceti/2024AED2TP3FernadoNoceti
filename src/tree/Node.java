@@ -1,30 +1,28 @@
 package tree;
 
 public class Node {
-    public int value;
-    public Node left;
-    public Node right;
+    private int value;
+    private Node left;
+    private Node right;
+    private int height;
 
     public Node() {
-        this.value = 0;
-        this.left = null;
-        this.right = null;
+        this(0);
     }
 
     public Node(int value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this(value, null, null);
     }
 
     public Node(int value, Node left, Node right) {
         this.value = value;
         this.left = left;
         this.right = right;
+        updateHeight();
     }
 
     public int getValue() {
-        return this.value;
+        return value;
     }
 
     public void setValue(int value) {
@@ -32,18 +30,36 @@ public class Node {
     }
 
     public Node getLeft() {
-        return this.left;
+        return left;
     }
 
     public void setLeft(Node left) {
         this.left = left;
+        updateHeight();
     }
 
     public Node getRight() {
-        return this.right;
+        return right;
     }
 
     public void setRight(Node right) {
         this.right = right;
+        updateHeight();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getBalance() {
+        int leftHeight = (left == null) ? -1 : left.height;
+        int rightHeight = (right == null) ? -1 : right.height;
+        return leftHeight - rightHeight;
+    }
+
+    public void updateHeight() {
+        int leftHeight = (left == null) ? -1 : left.height;
+        int rightHeight = (right == null) ? -1 : right.height;
+        height = 1 + Math.max(leftHeight, rightHeight);
     }
 }
