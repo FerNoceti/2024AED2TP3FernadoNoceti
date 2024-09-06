@@ -8,7 +8,7 @@ public class BinarySearchTreeImp implements BinarySearchTree {
         root = insertRecursively(root, value);
     }
 
-    private Node insertRecursively(Node node, int value) {
+    protected Node insertRecursively(Node node, int value) {
         if (node == null) {
             return new Node(value);
         }
@@ -29,7 +29,7 @@ public class BinarySearchTreeImp implements BinarySearchTree {
         root = deleteRecursively(root, value);
     }
 
-    private Node deleteRecursively(Node node, int value) {
+    protected Node deleteRecursively(Node node, int value) {
         if (node == null) {
             return null;
         }
@@ -94,5 +94,18 @@ public class BinarySearchTreeImp implements BinarySearchTree {
 
     public void setRoot(Node root) {
         this.root = root;
+    }
+
+    @Override
+    public int getHeight() {
+        return getHeightRecursively(root);
+    }
+
+    private int getHeightRecursively(Node node) {
+        if (node == null) {
+            return -1;
+        }
+
+        return 1 + Math.max(getHeightRecursively(node.getLeft()), getHeightRecursively(node.getRight()));
     }
 }

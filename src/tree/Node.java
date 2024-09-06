@@ -27,6 +27,7 @@ public class Node {
 
     public void setValue(int value) {
         this.value = value;
+        updateHeight();
     }
 
     public Node getLeft() {
@@ -49,6 +50,10 @@ public class Node {
 
     public int getHeight() {
         return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public int getBalance() {
