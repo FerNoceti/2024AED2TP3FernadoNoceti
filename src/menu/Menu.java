@@ -1,9 +1,13 @@
 package menu;
 
+import tree.AVLTreeImp;
+
 import java.util.Scanner;
 
 public class Menu {
     private final Scanner scanner;
+
+    private final AVLTreeImp avlTree = new AVLTreeImp();
 
     public Menu(Scanner scanner) {
         this.scanner = scanner;
@@ -12,7 +16,8 @@ public class Menu {
     public void displayMenu() {
         String menuOptions = "1. Insertar un dato\n" +
                 "2. Borrar un dato\n" +
-                "3. Mostrar todos los datos ordenados con su FE\n";
+                "3. Mostrar todos los datos ordenados con su FE\n" +
+                "4. Salir";
 
         int option = 0;
 
@@ -28,14 +33,35 @@ public class Menu {
     private void handleMenuOption(int option) {
         switch (option) {
             case 1:
-                System.out.println("Insertar un dato");
+                insertData();
                 break;
             case 2:
-                System.out.println("Borrar un dato");
+                deleteData();
                 break;
             case 3:
-                System.out.println("Mostrar todos los datos ordenados con su FE");
+                showData();
                 break;
+            case 4:
+                System.out.println("Saliendo...");
+                break;
+            default:
+                System.out.println("Opcion invalida.");
         }
+    }
+
+    private void insertData() {
+        System.out.print("Ingrese un dato a insertar: ");
+        int data = scanner.nextInt();
+        avlTree.insert(data);
+    }
+
+    private void deleteData() {
+        System.out.print("Ingrese un dato a eliminar: ");
+        int data = scanner.nextInt();
+        avlTree.delete(data);
+    }
+
+    private void showData() {
+        System.out.println(avlTree.toString());
     }
 }
