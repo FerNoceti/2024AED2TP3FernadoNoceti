@@ -104,9 +104,12 @@ public class AVLTreeImp extends BinarySearchTreeImp {
             return "";
         }
 
-        return toStringRecursively(node.getLeft()) +
-                "Valor: " + node.getValue() + " FE: " + node.getBalance() + "\n" +
-                toStringRecursively(node.getRight());
+        StringBuilder sb = new StringBuilder();
+        sb.append(toStringRecursively(node.getLeft()));
+        sb.append("Valor: ").append(node.getValue()).append(" FE: ").append(node.getBalance()).append("\n");
+        sb.append(toStringRecursively(node.getRight()));
+        return sb.toString();
     }
+
 
 }
