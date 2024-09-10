@@ -11,7 +11,8 @@ public class Node {
     }
 
     public Node(int value) {
-        this(value, null, null);
+        this.value = value;
+        this.height = 1;
     }
 
     public Node(int value, Node left, Node right) {
