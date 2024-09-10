@@ -1,12 +1,12 @@
 package menu;
 
 import tree.AVLTreeImp;
+import util.InputValidator;
 
 import java.util.Scanner;
 
 public class Menu {
     private final Scanner scanner;
-
     private final AVLTreeImp avlTree = new AVLTreeImp();
 
     public Menu(Scanner scanner) {
@@ -23,9 +23,7 @@ public class Menu {
 
         while (option != 4) {
             System.out.println(menuOptions);
-            System.out.print("Ingrese una opcion: ");
-            option = scanner.nextInt();
-
+            option = InputValidator.getValidInt(scanner, "Ingrese una opción: ");
             handleMenuOption(option);
         }
     }
@@ -45,19 +43,17 @@ public class Menu {
                 System.out.println("Saliendo...");
                 break;
             default:
-                System.out.println("Opcion invalida.");
+                System.out.println("Opción inválida.");
         }
     }
 
     private void insertData() {
-        System.out.print("Ingrese un dato a insertar: ");
-        int data = scanner.nextInt();
+        int data = InputValidator.getValidInt(scanner, "Ingrese un dato a insertar: ");
         avlTree.insert(data);
     }
 
     private void deleteData() {
-        System.out.print("Ingrese un dato a eliminar: ");
-        int data = scanner.nextInt();
+        int data = InputValidator.getValidInt(scanner, "Ingrese un dato a eliminar: ");
         avlTree.delete(data);
     }
 
